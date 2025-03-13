@@ -58,10 +58,15 @@ function App() {
             <h1 className="text-xl font-semibold mr-4">
               TCS Consultancy Services
             </h1>
-            <div className="text-green-500">
-              {percentageChange > 0 ? "↑" : "↓"}{" "}
-              {Math.abs(percentageChange).toFixed(2)}%
-            </div>
+            {percentageChange > 0 ? 
+              <div className="text-green-500">
+    
+              {"↑ " + Math.abs(percentageChange).toFixed(2)}%
+            </div> : 
+            <div className="text-red-500">
+    
+              {"↓ " + Math.abs(percentageChange).toFixed(2)}%
+            </div>}
           </div>
           <div>
             {timeRanges.map((range) => (
