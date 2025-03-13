@@ -1,6 +1,5 @@
 import { AreaChart } from "@tremor/react";
 
-// Define the type for stock data
 interface StockData {
   id: number;
   co_code: string;
@@ -13,7 +12,6 @@ interface StockData {
   volume: number;
 }
 
-// Define the type for chart data (formatted for Tremor)
 interface ChartData {
   date: string;
   Close: number;
@@ -26,21 +24,19 @@ interface ChartProps {
 }
 
 export const Chart = ({ data }: ChartProps) => {
-  // Format the data for Tremor's AreaChart
   const chartData: ChartData[] = data.map((item) => ({
     date: new Date(item.date)
-      .toLocaleDateString("en-GB", {
+      .toLocaleDateString("en-IN", {
         day: "2-digit",
         month: "short",
         year: "2-digit",
       })
-      .replace(/(\d{2}) (\w{3}) (\d{2})/, "$1 $2 $3"), // Format: "14 Dec 24"
+      .replace(/(\d{2}) (\w{3}) (\d{2})/, "$1 $2 $3"), 
     Close: item.close,
     mcap: item.mcap,
     volume: item.volume,
   }));
 
-  // Custom tooltip
   const customTooltip = ({
     payload,
     label,
@@ -74,7 +70,6 @@ export const Chart = ({ data }: ChartProps) => {
       }
       yAxisWidth={60}
       showLegend={false}
-      showGridLines={false} // No vertical grid lines
       showXAxis={true}
       showYAxis={true}
       autoMinValue={true}
